@@ -4,9 +4,9 @@ import os
 import subprocess
 import time
 
-
-READ_MODBUS_PATH = os.getenv('READ_MODBUS_PATH', '/home/pirate/heizung/bin/readModbus')
-LOG_FILE = os.getenv('LOG_FILE', '/var/log/wpcuc-collect.log')
+READ_MODBUS_PATH = os.getenv('READ_MODBUS_PATH', '/home/pirate/Sources/heizung/bin/readModbus')
+SERIAL_DEVICE_PATH = os.getenv('SERIAL_DEVICE_PATH', '/dev/ttyAMA0')
+LOG_FILE = os.getenv('LOG_FILE', '/var/log/wpcuc-collector.log')
 DEBUG = os.getenv('DEBUG', 'no')
 JSON_FILE = os.getenv('JSON_FILE', '/var/run/wpcuc.json')
 
@@ -26,13 +26,14 @@ else:
     fh.setLevel(logging.INFO)
 
 def create_cmd(function, addr, size, datatype):
-    return [READ_MODBUS_PATH, 
+    return [READ_MODBUS_PATH,
+            "-d%s" % SERIAL_DEVICE_PATH,
             "-f%d" % function, 
             "-a%s" % hex(addr), 
             "-s%d" % size, 
             "-t%d" % datatype]
 
-def format_value(datatype, str_value):
+def parse_value(datatype, str_value):
     if (datatype == 1): # Float
         return float(str_value)
     elif (datatype == 2 or datatype == 5 or datatype == 8): # datetime, time, string
@@ -59,7 +60,7 @@ def read_value(collected_values, **kwargs):
                     text=True,
                     timeout=2)
             if (p.returncode == 0):
-                value = format_value(kwargs['datatype'], p.stdout.strip())
+                value = parse_value(kwargs['datatype'], p.stdout.strip())
                 logger.info("%s = %s (attempt %d)" % (name, value, run))
                 collected_values[name] = value
                 break
