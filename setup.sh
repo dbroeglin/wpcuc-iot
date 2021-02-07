@@ -3,17 +3,12 @@
 # This field is used to set up the routing queries.
 subscriptionID=$(az account show --query id)
 
-# Concatenate this number onto the resources that have to be globally unique.
-# You can set this to "" or to a specific value if you don't want it to be random.
-# This retrieves a random value.
-randomValue=$RANDOM
-
 # Set the values for the resource names that 
 #   don't have to be globally unique.
-location=westus
-resourceGroup=ContosoResources
-iotHubConsumerGroup=ContosoConsumers
-containerName=contosoresults
+location=westeurope
+resourceGroup=rg-tr-iot-prod
+iotHubConsumerGroup=TrConsumers
+containerName=trdata
 
 # Create the resource group to be used
 #   for all the resources for this tutorial.
@@ -21,8 +16,7 @@ az group create --name $resourceGroup \
     --location $location
 
 # The IoT hub name must be globally unique, 
-#   so add a random value to the end.
-iotHubName=ContosoTestHub$randomValue 
+iotHubName=tr-home-001
 echo "IoT hub name = " $iotHubName
 
 # Create the IoT hub.
@@ -35,8 +29,7 @@ az iot hub consumer-group create --hub-name $iotHubName \
     --name $iotHubConsumerGroup
 
 # The storage account name must be globally unique, 
-#   so add a random value to the end.
-storageAccountName=contosostorage$randomValue
+storageAccountName=stotrhomeprod
 echo "Storage account name = " $storageAccountName
 
 # Create the storage account to be used as a routing destination.
@@ -62,8 +55,7 @@ az storage container create --name $containerName \
     --public-access off
 
 # The Service Bus namespace must be globally unique, 
-#   so add a random value to the end.
-sbNamespace=ContosoSBNamespace$randomValue
+sbNamespace=sb-tr-home-prod
 echo "Service Bus namespace = " $sbNamespace
 
 # Create the Service Bus namespace.
@@ -72,8 +64,7 @@ az servicebus namespace create --resource-group $resourceGroup \
     --location $location
 
 # The Service Bus queue name must be globally unique, 
-#   so add a random value to the end.
-sbQueueName=ContosoSBQueue$randomValue
+sbQueueName=sbq-tr-home-prod
 echo "Service Bus queue name = " $sbQueueName
 
 # Create the Service Bus queue to be used as a routing destination.
