@@ -15,5 +15,8 @@ client = IoTHubDeviceClient.create_from_connection_string(CONNECTION_STRING)
 with open(JSON_FILE) as file:
     data = file.read()
     message = Message(data)
+
+    message.custom_properties["level"] = "storage"
+
     print( "Sending message: {}".format(message) )
     client.send_message(message)
