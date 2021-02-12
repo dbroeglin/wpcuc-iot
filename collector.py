@@ -6,7 +6,7 @@ import time
 
 READ_MODBUS_PATH = os.getenv('READ_MODBUS_PATH', '/home/pirate/Sources/heizung/bin/readModbus')
 SERIAL_DEVICE_PATH = os.getenv('SERIAL_DEVICE_PATH', '/dev/ttyAMA0')
-LOG_FILE = os.getenv('LOG_FILE', '/var/log/wpcuc-collector.log')
+LOG_FILE = os.getenv('LOG_FILE', '/var/run/wpcuc-collector.log')
 DEBUG = os.getenv('DEBUG', 'no')
 JSON_FILE = os.getenv('JSON_FILE', '/var/run/wpcuc.json')
 
