@@ -1,5 +1,6 @@
 import json
 import logging
+import logging.handlers
 import os
 import subprocess
 import time
@@ -12,7 +13,7 @@ JSON_FILE = os.getenv('JSON_FILE', '/var/run/wpcuc.json')
 
 LOG_FORMAT = '%(asctime)-15s %(levelname)-5s %(message)s'
 
-fh = logging.FileHandler(LOG_FILE)
+fh = logging.handlers.RotatingFileHandler(LOG_FILE, maxBytes=30000000, backupCount=1)
 fh.setFormatter(logging.Formatter(LOG_FORMAT))
 
 logger = logging.getLogger('collector')
