@@ -108,6 +108,10 @@ data = [
         { 'name': 'SuctionGasTemp', 'function': 3, 'addr': 881, 'size': 2, 'datatype': DATA_TYPES['Float'] },
         { 'name': 'EvaporationPress', 'function': 3, 'addr': 945, 'size': 2, 'datatype': DATA_TYPES['Float'] },
         { 'name': 'CondensationPress', 'function': 3, 'addr': 977, 'size': 2, 'datatype': DATA_TYPES['Float'] },
+        { 'name': 'HeatCharacteristicSetPoint', 'function': 4, 'addr': 1057, 'size': 2, 'datatype': DATA_TYPES['Float'] },
+        { 'name': 'HeatCharacteristicSetPointBaseTemp', 'function': 4, 'addr': 1089, 'size': 2, 'datatype': DATA_TYPES['Float'] },
+        { 'name': 'HeatCharacteristicGradient', 'function': 4, 'addr': 1121, 'size': 2, 'datatype': DATA_TYPES['Float'] },
+        { 'name': 'HeatCharacteristicLimit', 'function': 4, 'addr': 1153, 'size': 2, 'datatype': DATA_TYPES['Float'] },
         { 'name': 'HeatReturnTemp', 'function': 4, 'addr': 1185, 'size': 2, 'datatype': DATA_TYPES['Float'] },
         { 'name': 'HeatReturnTempNominal', 'function': 4, 'addr': 1217, 'size': 2, 'datatype': DATA_TYPES['Float'] },
         { 'name': 'HeatTempHyst', 'function': 4, 'addr': 1249, 'size': 2, 'datatype': DATA_TYPES['Float'] },
@@ -125,6 +129,7 @@ data = [
         { 'name': 'FailureTempHeatSourceIn', 'function': 4, 'addr': 3377, 'size': 2, 'datatype': DATA_TYPES['Float'] },
         { 'name': 'FailureTempHeatSourceOut', 'function': 4, 'addr': 3409, 'size': 2, 'datatype': DATA_TYPES['Float'] },
         { 'name': 'FailureTempSuctionGas', 'function': 4, 'addr': 3441, 'size': 2, 'datatype': DATA_TYPES['Float'] },
+        { 'name': 'HeatSourceMinT', 'function': 4, 'addr': 4097, 'size': 1, 'datatype': DATA_TYPES['Byte'] },
 
         ]
 
